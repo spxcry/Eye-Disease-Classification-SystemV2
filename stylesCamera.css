@@ -61,6 +61,15 @@
   font-weight: 500;
   font-family: var(--header-font);
   color: var(--white);
+  opacity: 0; /* เริ่มจากการซ่อน */
+  transform: translateY(20px); /* เริ่มจากด้านล่าง */
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* เพิ่มคลาสสำหรับเอฟเฟกต์ที่จะแสดงเมื่อโหลด */
+.header__content.show .section__header {
+  opacity: 1; /* ทำให้มองเห็นได้ */
+  transform: translateY(0); /* กลับไปที่ตำแหน่งเดิม */
 }
 
 .btn {

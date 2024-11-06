@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="stylesheet" href="Scaner.css" />
+  <link rel="stylesheet" href="stylesCamera.css" />
   <title>Eye Disease Classification System | PROJECT</title>
 </head>
 <body>
@@ -34,7 +34,12 @@
           <button id="start-camera" class="custom-file-upload">
             <i class="ri-camera-line"></i> เปิดกล้อง
           </button>
-          <video id="camera" autoplay playsinline style="display:none; width:100%; max-width:400px;"></video>
+          <video
+            id="camera"
+            autoplay
+            playsinline
+            style="display: none; width: 100%; max-width: 400px"
+          ></video>
         </div>
         <div id="result-container" class="result-container"></div>
       </div>
@@ -95,7 +100,9 @@
     async function startCamera() {
       const video = document.getElementById("camera");
       video.style.display = "block";
-      cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      cameraStream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+      });
       video.srcObject = cameraStream;
 
       video.addEventListener("loadeddata", () => {
@@ -112,7 +119,7 @@
       const resultContainer = document.getElementById("result-container");
       resultContainer.innerHTML = ""; // Clear previous results
 
-      predictions.forEach(pred => {
+      predictions.forEach((pred) => {
         const resultItem = document.createElement("div");
         resultItem.className = "result-item";
 
@@ -127,6 +134,13 @@
 
     document.getElementById("start-camera").addEventListener("click", startCamera);
     window.onload = loadModel;
+
+    // สไลด์ข้อความเมื่อโหลดหน้า
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector(".header__content").classList.add("show");
+      document.querySelector(".header__socials").classList.add("show"); // เพิ่มเอฟเฟกต์สไลด์ให้ header__socials
+    });
   </script>
+  <script src="mainCamera.js"></script>
 </body>
 </html>
