@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="brownfile.css" />
+    <title>Eye Disease Classification System | PROJECT</title>
+  </head>
+  <body>
+    <header class="header" id="home">
+      <nav>
+        <div class="nav__bar">
+          <div class="logo nav__logo">
+            <a href="#">PROJECT</a>
+          </div>
+          <ul class="nav__links" id="nav-links">
+            <li><a href="index.html">กลับหน้าหลัก</a></li>
+          </ul>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+          <div class="nav__action__btn">
+            <button class="btn">
+              <span><i class="ri-user-line"></i></span> Account
+            </button>
+          </div>
+        </div>
+      </nav>
+      <div class="section__container header__container">
+        <div class="header__content">
+          <h1 class="section__header">Eye Disease Classification</h1>
+          <div class="input-container">
+            <label for="file-upload" class="custom-file-upload">
+              <i class="ri-image-line"></i> เลือกรูปภาพ
+            </label>
+            <input
+              id="file-upload"
+              type="file"
+              accept="image/*"
+              onchange="loadImage(event)"
+            />
+            <img id="uploadedImage" class="uploaded-image" />
+          </div>
+          <div id="result-container" class="result-container"></div>
+        </div>
+        <div class="header__socials">
+          <span>Follow us</span>
+          <a href="#"><i class="ri-instagram-line"></i></a>
+          <a href="#"><i class="ri-twitter-fill"></i></a>
+        </div>
+      </div>
+    </header>
+
+    <footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <div class="logo footer__logo">
+            <a href="#">PROJECT</a>
+          </div>
+          <p>Enjoy the technology of the Eye Disease Classification System.</p>
+        </div>
+        <div class="footer__col">
+          <h4>More on The Blog</h4>
+          <ul class="footer__links">
+            <li><a href="#">About EDCS</a></li>
+            <li><a href="#">Contributors & Writers</a></li>
+            <li><a href="#">Write For Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>More on EDCS</h4>
+          <ul class="footer__links">
+            <li><a href="#">The Team</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2024 Buriram Information Technology
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script>
+      const MODEL_URL =
+        "https://teachablemachine.withgoogle.com/models/ZDDloDqUc/";
+      let model, maxPredictions;
+
+      async function loadModel() {
+        const modelURL = MODEL_URL + "model.json";
+        const metadataURL = MODEL_URL + "metadata.json";
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+      }
+
+      async function loadImage(event) {
+        const image = document.getElementById("uploadedImage");
+        image.src = URL.createObjectURL(event.target.files[0]);
+        image.style.display = "block"; // Show the image element
+        image.onload = async () => {
+          await predict(image);
+        };
+      }
+
+      async function predict(image) {
+        const prediction = await model.predict(image);
+        displayResults(prediction);
+      }
+
+      function displayResults(predictions) {
+        const resultContainer = document.getElementById("result-container");
+        resultContainer.innerHTML = ""; // Clear previous results
+
+        const highestPrediction = predictions.sort(
+          (a, b) => b.probability - a.probability
+        )[0];
+
+        const resultItem = document.createElement("div");
+        resultItem.className = "result-item";
+
+        const label = document.createElement("div");
+        label.className = "result-label"; // เพิ่ม class สำหรับการจัดรูปแบบ
+        label.textContent = `${highestPrediction.className}`; // แสดงแค่ชื่อของการจำแนกประเภท
+
+        resultItem.appendChild(label);
+        resultContainer.appendChild(resultItem);
+      }
+
+      window.onload = loadModel;
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
