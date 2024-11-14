@@ -31,22 +31,24 @@
         </div>
       </nav>
       <div class="section__container header__container">
-        <div class="header__content">
-          <h1 class="section__header">Eye Disease Classification</h1>
-          <div class="input-container">
-            <label for="file-upload" class="custom-file-upload">
-              <i class="ri-image-line"></i> เลือกรูปภาพ
-            </label>
-            <input
-              id="file-upload"
-              type="file"
-              accept="image/*"
-              onchange="loadImage(event)"
-            />
-            <img id="uploadedImage" class="uploaded-image" />
+        <div class="model-frame"> <!-- เริ่มกรอบใหญ่ -->
+          <div class="header__content">
+            <h1 class="section__header">Eye Disease Classification</h1>
+            <div class="input-container">
+              <label for="file-upload" class="custom-file-upload">
+                <i class="ri-image-line"></i> เลือกรูปภาพ
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                accept="image/*"
+                onchange="loadImage(event)"
+              />
+              <img id="uploadedImage" class="uploaded-image" />
+            </div>
+            <div id="result-container" class="result-container"></div>
           </div>
-          <div id="result-container" class="result-container"></div>
-        </div>
+        </div> <!-- ปิดกรอบใหญ่ -->
         <div class="header__socials">
           <span>Follow us</span>
           <a href="#"><i class="ri-instagram-line"></i></a>
@@ -55,6 +57,7 @@
       </div>
     </header>
 
+    <!-- Remove or comment out the footer to hide it
     <footer class="footer">
       <div class="section__container footer__container">
         <div class="footer__col">
@@ -86,6 +89,7 @@
         Copyright © 2024 Buriram Information Technology
       </div>
     </footer>
+    -->
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -116,23 +120,32 @@
       }
 
       function displayResults(predictions) {
-        const resultContainer = document.getElementById("result-container");
-        resultContainer.innerHTML = ""; // Clear previous results
+    const resultContainer = document.getElementById("result-container");
+    resultContainer.innerHTML = ""; // Clear previous results
 
-        const highestPrediction = predictions.sort(
-          (a, b) => b.probability - a.probability
-        )[0];
-
+    predictions.forEach((prediction) => {
         const resultItem = document.createElement("div");
         resultItem.className = "result-item";
 
         const label = document.createElement("div");
-        label.className = "result-label"; // เพิ่ม class สำหรับการจัดรูปแบบ
-        label.textContent = `${highestPrediction.className}`; // แสดงแค่ชื่อของการจำแนกประเภท
+        label.className = "prediction-text";
+        label.textContent = `${prediction.className}`;
+
+        const barContainer = document.createElement("div");
+        barContainer.className = "prediction-bar-container";
+
+        const bar = document.createElement("div");
+        bar.className = "prediction-bar";
+        bar.style.width = `${(prediction.probability * 100).toFixed(2)}%`;
+        bar.textContent = `${(prediction.probability * 100).toFixed(2)}%`; // Show percentage in the bar
 
         resultItem.appendChild(label);
+        barContainer.appendChild(bar);
+        resultItem.appendChild(barContainer);
         resultContainer.appendChild(resultItem);
-      }
+    });
+}
+
 
       window.onload = loadModel;
     </script>
