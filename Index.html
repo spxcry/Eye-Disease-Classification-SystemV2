@@ -11,7 +11,10 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Pattaya&display=swap");
     </style>
-    <title>ระบบวินิจฉัยโรคตาด้วยการเรียนรู้เชิงลึก | PROJECT</title>
+    <title>
+      The web application system for automated eye disease diagnosis using deep
+      learning. | PROJECT
+    </title>
   </head>
   <body>
     <header class="header" id="home">
@@ -21,9 +24,9 @@
             <a href="#">PROJECT</a>
           </div>
           <ul class="nav__links" id="nav-links">
-            <li><a href="treatment.html">ข้อมูลโรคดวงตา</a></li>
-            <li><a href="brownFile.html">ระบบวินิจฉัยโรคดวงตา</a></li>
-            <li><a href="brownCamera.html">เกี่ยวกับ</a></li>
+            <li><a href="symptom.html">ข้อมูลโรคดวงตา</a></li>
+            <li><a href="brownFile.html">วินิจฉัยโรคดวงตา</a></li>
+            <li><a href="readme.html">เกี่ยวกับ</a></li>
           </ul>
           <div class="nav__menu__btn" id="menu-btn">
             <i class="ri-menu-line"></i>
@@ -39,7 +42,8 @@
         <div class="header__content">
           <h3 class="section__subheader">AN APP GUIDE</h3>
           <h1 class="section__header">
-            ระบบวินิจฉัยโรคตาด้วยการเรียนรู้เชิงลึก !
+            ระบบเว็บแอปพลิเคชันสำหรับวินิจฉัยโรคตาอัตโนมัติด้วยการเรียนรู้เชิงลึก
+            !
           </h1>
           <div class="scroll__btn">
             <a href="#about">
@@ -48,23 +52,45 @@
             </a>
           </div>
         </div>
-        <div class="header__socials">
-          <span>Follow us</span>
-          <a href="#"><i class="ri-instagram-line"></i></a>
-          <a href="#"><i class="ri-twitter-fill"></i></a>
-        </div>
       </div>
     </header>
     <section class="about">
       <div class="section__container about__container">
         <div class="about__image about__image-1" id="about">
-          <img src="assets/test1.png" alt="about" />
+          <img src="assets/aivdeio.gif" alt="about" />
         </div>
         <div class="about__content about__content-1">
           <h3 class="section__subheader">GET STARTED</h3>
-          <h2 class="section__header">วัตถุประสงค์ของระบบ</h2>
+          <h2 class="section__header">
+            วินิจฉัยโรคตาอัตโนมัติด้วยการเรียนรู้เชิงลึก
+          </h2>
           <p>
-            ช่วยแพทย์ในการวินิจฉัยโรคดวงตา
+            ระบบนี้เป็นเครื่องมือที่ช่วยในการจำแนกโรคทางตาจากภาพถ่ายของดวงตาโดยใช้เทคโนโลยีการเรียนรู้เชิงลึก
+            (Deep Learning)
+            เพื่อประมวลผลและทำนายโรคตาที่อาจเกิดขึ้นจากภาพที่อัปโหลด
+            ระบบนี้สามารถช่วยในการตรวจจับโรคตาต่างๆ เช่น
+            โรคต้อหินและโรคจอประสาทตาเสื่อม โดยมีความสะดวกในการใช้งาน
+            ผู้ใช้สามารถอัปโหลดภาพจากอุปกรณ์ได้ง่ายๆ
+            และได้รับผลลัพธ์การทำนายทันที
+            ซึ่งเป็นเครื่องมือที่เสริมความแม่นยำในการวินิจฉัยโรคตาในเบื้องต้น.
+          </p>
+          <div class="about__btn">
+            <a href="#">
+              Read more
+              <span><i class="ri-arrow-right-line"></i></span>
+            </a>
+          </div>
+        </div>
+        <div class="about__image about__image-2" id="equipment">
+          <img src="assets/doctor2x.png" alt="about" />
+        </div>
+        <div class="about__content about__content-2">
+          <h3 class="section__subheader">OBJECTIVES OF THE SYSTEM</h3>
+          <h2 class="section__header">
+            วัตถุประสงค์ของระบบ <span class="nowrap"></span>
+          </h2>
+          <p>
+            เพื่อช่วยแพทย์ในการวินิจฉัยโรคดวงตา
             ระบบถูกออกแบบมาเพื่อช่วยให้แพทย์สามารถวินิจฉัยโรคดวงตาได้อย่างรวดเร็วและแม่นยำมากขึ้น
             โดยใช้การวิเคราะห์ภาพถ่ายดวงตาเพื่อระบุความผิดปกติที่อาจเกิดขึ้น
             ได้แก่ โรคเบาหวานขึ้นจอประสาทตา ต้อหิน และต้อกระจก
@@ -76,45 +102,16 @@
             </a>
           </div>
         </div>
-        <div class="about__image about__image-2" id="equipment">
-          <img src="assets/about-2.jpg" alt="about" />
-        </div>
-        <div class="about__content about__content-2">
-          <h3 class="section__subheader">EYE DISEASE</h3>
-          <h2 class="section__header">
-            โรคเบาหวานขึ้นตา <span class="nowrap">(Diabetic Retinopathy)</span>
-          </h2>
-          <p>
-            โรคเบาหวานขึ้นตา
-            เกิดจากการมีระดับน้ำตาลในเลือดเพิ่มสูงขึ้นเป็นเวลานานส่งผล
-            ให้เส้นเลือดฝอยที่ไปหล่อเลี้ยงจอตาโป่งพองเป็นหย่อมๆ
-            จากผนังหลอดเลือดผิดปกติ ทำให้เลือดและน้ำเหลืองซึมออกมาจากหลอดเลือด
-            กระจายทั่วจอประสาทตา
-            และเส้นเลือดใหญ่ที่จอตาจะเริ่มขยายตัวใหญ่ขึ้นผิดปกติ
-            รวมถึงเส้นใยประสาทของจอตาและจุดภาพชัด
-          </p>
-          <div class="about__btn">
-            <a href="#">
-              Read more
-              <span><i class="ri-arrow-right-line"></i></span>
-            </a>
-          </div>
-        </div>
         <div class="about__image about__image-3" id="blog">
-          <img src="assets/about-3.jpg" alt="about" />
+          <img src="assets/doctor3x.png" alt="about" />
         </div>
         <div class="about__content about__content-3">
-          <h3 class="section__subheader">EYE DISEASE</h3>
-          <h2 class="section__header">
-            โรคต้อหิน<br />
-            (glaucoma)
-          </h2>
+          <h3 class="section__subheader">STEPS TO USE THE SYSTEM</h3>
+          <h2 class="section__header">วิธีการใช้งานระบบ<br /></h2>
           <p>
-            เป็นโรคตาซึ่งคนที่เป็นส่วนใหญ่มักจะไม่ทราบว่าตนป่วยเป็นโรคนี้
-            โดยเฉพาะในระยะแรกๆ พอทราบก็มักจะใกล้บอดแล้ว ที่อันตรายที่สุดคือ
-            ถ้าไม่ได้รับการรักษาอย่างถูกต้องตาจะบอดในที่สุด ไม่ช้าก็เร็ว
-            ขึ้นอยู่กับความรุนแรงของโรคในแต่ละบุคคลต้อหินเป็นหนึ่งในกลุ่มโรคต้อ
-            ตามที่คนเรียกกันโดยทั่วๆ
+            อัปโหลดภาพ > คลิกที่ปุ่ม "เลือกภาพ" เพื่ออัปโหลดภาพจากอุปกรณ์<br />
+            ประมวลผลภาพ > ระบบจะประมวลผลภาพและทำนายประเภทของโรคตา<br />
+            ดูผล > ผลการทำนายจะแสดงประเภทโรคและเปอร์เซ็นต์ความแม่นยำ
           </p>
           <div class="about__btn">
             <a href="#">
@@ -125,16 +122,15 @@
         </div>
 
         <div class="about__image about__image-4" id="blog">
-          <img src="assets/about-4.jpg" alt="about" />
+          <img src="assets/doctor4x.png" alt="about" />
         </div>
         <div class="about__content about__content-4">
           <h3 class="section__subheader">EYE DISEASE</h3>
-          <h2 class="section__header">โรคต้อกระจก(Cataract)</h2>
+          <h2 class="section__header">ประสิทธิภาพของระบบ</h2>
           <p>
-            โรคต้อกระจก เป็นภาวะการเปลี่ยนแปลงที่เกิดจากการขุ่นของ “เลนส์ตา”
-            ปกติ เลนส์ตาจะมีลักษณะใส ทำหน้าที่ช่วยในการรวมแสงให้ตกลงบนจอ
-            ประสาทตาพอดี เมื่อเกิดต้อกระจก ทำให้แสงไม่สามารถเข้าไปในตาได้
-            ตามปกติ ทำให้การมองเห็นไม่ชัดเจนหรือมีอาการตามัว พบบ่อยในผู้สูงอายุ
+            - ความแม่นยำในการวินิจฉัยไม่น้อยกว่า 80% บนชุดข้อมูลทดสอบ <br />
+            - ระยะเวลาในการประมวลผลต่อภาพไม่เกิน 5 วินาที <br />
+            - สามารถรองรับไฟล์ภาพในรูปแบบ JPG, PNG ขนาดไม่เกิน 10MB
           </p>
           <div class="about__btn">
             <a href="#">
@@ -152,7 +148,10 @@
           <div class="logo footer__logo">
             <a href="#">PROJECT</a>
           </div>
-          <p>Enjoy the technology of the Eye Disease Classification System.</p>
+          <p>
+            The web application system for automated eye disease diagnosis using
+            deep learning.
+          </p>
         </div>
         <div class="footer__col">
           <h4>More on The Blog</h4>
