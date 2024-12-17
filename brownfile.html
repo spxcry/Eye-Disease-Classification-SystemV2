@@ -1,121 +1,145 @@
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link
-        href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
-        rel="stylesheet"
-      />
-      <link rel="stylesheet" href="stylesFile.css" />
-      <title>The web application system for automated eye disease diagnosis using deep learning. | PROJECT</title>
-    </head>
-    <body>
-      <header class="header" id="home">
-        <nav>
-          <div class="nav__bar">
-            <div class="logo nav__logo">
-              <a href="#">PROJECT</a>
-            </div>
-            <ul class="nav__links" id="nav-links">
-              <li><a href="index.html">กลับหน้าหลัก</a></li>
-            </ul>
-            <div class="nav__menu__btn" id="menu-btn">
-              <i class="ri-menu-line"></i>
-            </div>
-            <div class="nav__action__btn">
-              <button class="btn">
-                <span><i class="ri-user-line"></i></span> Account
-              </button>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="stylesFile.css" />
+    <title>
+      The web application system for automated eye disease diagnosis using deep
+      learning. | PROJECT
+    </title>
+  </head>
+  <body>
+    <header class="header" id="home">
+      <nav>
+        <div class="nav__bar">
+          <div class="logo nav__logo">
+            <a href="#">PROJECT</a>
           </div>
-        </nav>
-        <div class="section__container header__container">
-          <div class="model-frame">
-            <!-- เริ่มกรอบใหญ่ -->
-            <div class="header__content">
-              <h1 class="section__header">Eye Disease Classification</h1>
-              <div class="input-container">
-                <label for="file-upload" class="custom-file-upload">
-                  <i class="ri-image-line"></i> เลือกรูปภาพ
-                </label>
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept="image/*"
-                  onchange="loadImage(event)"
-                />
-                <img id="uploadedImage" class="uploaded-image" />
-              </div>
-              <div id="result-container" class="result-container"></div>
-            </div>
+          <ul class="nav__links" id="nav-links">
+            <li><a href="index.html">กลับหน้าหลัก</a></li>
+          </ul>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
           </div>
-          <!-- ปิดกรอบใหญ่ -->
-          <div class="header__socials">
-            <span>Follow us</span>
-            <a href="#"><i class="ri-instagram-line"></i></a>
-            <a href="#"><i class="ri-twitter-fill"></i></a>
+          <div class="nav__action__btn">
+            <button class="btn">
+              <span><i class="ri-user-line"></i></span> Account
+            </button>
           </div>
         </div>
-      </header>
-      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-      <script>
-        const MODEL_URL =
-          "https://teachablemachine.withgoogle.com/models/ZDDloDqUc/";
-        let model, maxPredictions;
+      </nav>
+      <div class="section__container header__container">
+        <div class="model-frame">
+          <!-- เริ่มกรอบใหญ่ -->
+          <div class="header__content">
+            <h1 class="section__header">Eye Disease Classification</h1>
+            <div class="input-container">
+              <label for="file-upload" class="custom-file-upload">
+                <i class="ri-image-line"></i> เลือกรูปภาพ
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                accept="image/*"
+                onchange="loadImage(event)"
+              />
+              <img id="uploadedImage" class="uploaded-image" />
+            </div>
+            <div id="result-container" class="result-container"></div>
+          </div>
+        </div>
+        <!-- ปิดกรอบใหญ่ -->
+        <div class="header__socials">
+          <span>Follow us</span>
+          <a href="#"><i class="ri-instagram-line"></i></a>
+          <a href="#"><i class="ri-twitter-fill"></i></a>
+        </div>
+      </div>
+    </header>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script>
+      const MODEL_URL =
+        "https://teachablemachine.withgoogle.com/models/ZDDloDqUc/";
+      let model, maxPredictions;
 
-        async function loadModel() {
-          const modelURL = MODEL_URL + "model.json";
-          const metadataURL = MODEL_URL + "metadata.json";
-          model = await tmImage.load(modelURL, metadataURL);
-          maxPredictions = model.getTotalClasses();
-        }
+      async function loadModel() {
+        const modelURL = MODEL_URL + "model.json";
+        const metadataURL = MODEL_URL + "metadata.json";
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+      }
 
-        async function loadImage(event) {
-          const image = document.getElementById("uploadedImage");
-          image.src = URL.createObjectURL(event.target.files[0]);
-          image.style.display = "block"; // Show the image element
-          image.onload = async () => {
-            await predict(image);
-          };
-        }
+      async function loadImage(event) {
+        const image = document.getElementById("uploadedImage");
+        image.src = URL.createObjectURL(event.target.files[0]);
+        image.style.display = "block"; // Show the image element
+        image.onload = async () => {
+          await predict(image);
+        };
+      }
 
-        async function predict(image) {
-          const prediction = await model.predict(image);
-          displayResults(prediction);
-        }
+      async function predict(image) {
+        const prediction = await model.predict(image);
+        displayResults(prediction);
+      }
 
-        function displayResults(predictions) {
-          const resultContainer = document.getElementById("result-container");
-          resultContainer.innerHTML = ""; // Clear previous results
+      function displayResults(predictions) {
+        const resultContainer = document.getElementById("result-container");
+        resultContainer.innerHTML = ""; // Clear previous results
 
-          predictions.forEach((prediction) => {
-            const resultItem = document.createElement("div");
-            resultItem.className = "result-item";
+        predictions.forEach((prediction) => {
+          const resultItem = document.createElement("div");
+          resultItem.className = "result-item";
 
-            const label = document.createElement("div");
-            label.className = "prediction-text";
-            label.textContent = `${prediction.className}`;
+          const label = document.createElement("div");
+          label.className = "prediction-text";
+          label.textContent = `${prediction.className}`;
 
-            const barContainer = document.createElement("div");
-            barContainer.className = "prediction-bar-container";
+          const barContainer = document.createElement("div");
+          barContainer.className = "prediction-bar-container";
 
-            const bar = document.createElement("div");
-            bar.className = "prediction-bar";
-            bar.style.width = `${(prediction.probability * 100).toFixed(2)}%`;
-            bar.textContent = `${(prediction.probability * 100).toFixed(2)}%`; // Show percentage in the bar
+          const bar = document.createElement("div");
+          bar.className = "prediction-bar";
+          bar.style.width = `${(prediction.probability * 100).toFixed(2)}%`;
+          bar.textContent = `${(prediction.probability * 100).toFixed(2)}%`; // Show percentage in the bar
 
-            resultItem.appendChild(label);
-            barContainer.appendChild(bar);
-            resultItem.appendChild(barContainer);
-            resultContainer.appendChild(resultItem);
-          });
-        }
+          resultItem.appendChild(label);
+          barContainer.appendChild(bar);
+          resultItem.appendChild(barContainer);
+          resultContainer.appendChild(resultItem);
+        });
 
-        window.onload = loadModel;
-      </script>
-      <script src="https://unpkg.com/scrollreveal"></script>
-      <script src="mainFile.js"></script>
-    </body>
-  </html>
+        // Add "normal" class after glaucoma results
+        const normalResultItem = document.createElement("div");
+        normalResultItem.className = "result-item";
+
+        const normalLabel = document.createElement("div");
+        normalLabel.className = "prediction-text";
+        normalLabel.textContent = "Normal"; // You can change this text if needed
+
+        const normalBarContainer = document.createElement("div");
+        normalBarContainer.className = "prediction-bar-container";
+
+        const normalBar = document.createElement("div");
+        normalBar.className = "prediction-bar";
+        normalBar.style.width = "100%"; // Normal class with 100% as probability
+        normalBar.textContent = "100%"; // Showing 100% for normal
+
+        normalResultItem.appendChild(normalLabel);
+        normalBarContainer.appendChild(normalBar);
+        normalResultItem.appendChild(normalBarContainer);
+        resultContainer.appendChild(normalResultItem);
+      }
+
+      window.onload = loadModel;
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="mainFile.js"></script>
+  </body>
+</html>
